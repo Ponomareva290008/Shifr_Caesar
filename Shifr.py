@@ -10,6 +10,14 @@ for letter in word:
     words += ABC[b]
 print('Ваш шифр: ', words)
 
-
+shif = input('Введите слово, которое хотите расшифровать(на английском): ')
+shif = shif.lower()
+num_1 = int(input('Введите число от 1 до 10: '))
+shifr = ''
+for letter in shif:
+    c = ABC.find(letter)
+    d = c - num
+    shifr += ABC[d]
+print('Расшифровка: ', shifr)
 
 
