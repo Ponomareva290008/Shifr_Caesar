@@ -1,0 +1,60 @@
+# -*- coding: utf-8 -*-
+import logging
+logger = logging.getLogger('NewLogger')
+logger.setLevel(logging.INFO)
+file_handler = logging.FileHandler('shifr.log')
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+file_handler.setFormatter(formatter)
+logger.addHandler(file_handler)
+logger.info('Старт программы')
+name = input('Как вас зовут?')
+print('Привет,', name)
+logger.info('Программа узнала имя пользователя')
+ABC = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzабвгдеёжзийклмнопрстуфхцчшщъыьэюяабвгдеёжзийклмнопрстуфхцчшщъыьэюя'
+word = input('Введите слово, которое хотите зашифровать: ')
+logger.info("Программа начала работу над шифрованием")
+word = word.lower()
+num = 0
+try:
+   num = int(input('Введите число от 1 до 10 (ключ шифра): '))
+   if int(num) > 10:
+        print('Вы ввели число больше 10.Шифр выведется неверный.Попробуйте еще раз!')
+        logger.info('Ввели число больше 10, не соответствует требованиям')
+   elif int(num) < 1:
+        print('Вы ввели число меньше 1.Шифр выведется неверный.Попробуйте еще раз!')
+        logger.info('Ввели число меньше 1, не соответствует требованиям')
+except ValueError:
+    print('Это не число. Попробуйте еще раз.')
+    logger.info('Произошла ошибка, так как ввели не число')
+words = ''
+for letter in word:
+    a = ABC.find(letter)
+    b = a + num
+    words += ABC[b]
+print('Ваш шифр: ', words)
+logger.info('Программа закончила работу над шифрованием')
+
+shif = input('Введите слово, которое хотите расшифровать: ')
+logger.info('Программа начала работу над расшифровкой ')
+shif = shif.lower()
+num_1 = 0
+try:
+   num_1 = int(input('Введите число от 1 до 10 (ключ шифра): '))
+   if int(num_1) > 10:
+        print('Вы ввели число больше 10.Шифр выведется неверный.Попробуйте еще раз!')
+        logger.info('Ввели число больше 10, не соответствует требованиям')
+   elif int(num_1) < 1:
+        print('Вы ввели число меньше 1.Шифр выведется неверный.Попробуйте еще раз!')
+        logger.info('Ввели число меньше 1, не соответствует требованиям')
+except ValueError:
+    print('Это не число. Попробуйте еще раз.')
+    logger.info('Произошла ошибка, так как ввели не число')
+shifr = ''
+for letter in shif:
+    c = ABC.find(letter)
+    d = c - num
+    shifr += ABC[d]
+print('Расшифровка: ', shifr)
+logger.info('Программа закончила работу над расшифровкой')
+
+
